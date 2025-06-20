@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOGO DA MEMÓRIA - DIVERTIDAMENTE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="jogo.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet">
+</head>
+
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+    <div class="container mx-auto flex flex-col items-center">
+        <h1 class="text-4xl md:text-6xl font-bold jogotitulo text-center mb-8 drop-shadow-lg">
+            JOGO DA MEMÓRIA
+            <span class="block text-4xl md:text-6xl font-bold">
+                <span class="letra-d">D</span>
+                <span class="letra-i">I</span>
+                <span class="letra-v">V</span>
+                <span class="letra-e">E</span>
+                <span class="letra-r">R</span>
+                <span class="letra-t">T</span>
+                <span class="letra-i2">I</span>
+                <span class="letra-d2">D</span>
+                <span class="letra-a">A</span>
+                <span class="letra-m">M</span>
+                <span class="letra-e2">E</span>
+                <span class="letra-n">N</span>
+                <span class="letra-t2">T</span>
+                <span class="letra-e3">E</span>
+            </span>
+        </h1>
+        <!-- Navegação -->
+        <div class="w-full max-w-4xl mb-0">
+            <div class="flex justify-center gap-4 mb-0">
+                <button id="btn-inicio" class="tab px-6 py-3 text-white font-bold rounded-t-lg">INÍCIO</button>
+                <button id="btn-jogo" class="tab px-6 py-3 text-white font-bold rounded-t-lg">JOGO</button>
+                <button id="btn-instrucoes" class="tab px-6 py-3 text-white font-bold rounded-t-lg">COMO JOGAR</button>
+
+
+            </div>
+        </div>
+
+        <!-- Conteúdo principal -->
+        <main class="w-full max-w-4xl bg-white/90 rounded-lg shadow-lg p-6 mb-4">
+            <!-- Tela de início -->
+            <div id="tela-inicio" class="fade-in">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-amiguinho">VOCÊ ESTÁ PRONTO AMIGUINHO?</h2>
+                    <p class="text-lg text-gray-600 mb-6">ENTÃO ESCOLHA UM NÍVEL DE DIFICULDADE PARA COMEÇAR:</p>
+
+                    <div class="flex flex-col md:flex-row justify-center gap-4">
+                        <button id="nivel-facil" class="btn text-white font-bold py-4 px-8 rounded-full shadow-md">
+                            <span class="text-xl">FÁCIL</span>
+                            <p class="text-sm">6 PARES</p>
+                        </button>
+
+                        <button id="nivel-medio" class="btn text-white font-bold py-4 px-8 rounded-full shadow-md">
+                            <span class="text-xl">MÉDIO</span>
+                            <p class="text-sm">10 PARES</p>
+                        </button>
+
+                        <button id="nivel-dificil" class="btn text-white font-bold py-4 px-8 rounded-full shadow-md">
+                            <span class="text-xl">DIFÍCIL</span>
+                            <p class="text-sm">15 PARES</p>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tela do jogo -->
+            <div id="tela-jogo" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <div class="bg-pink-100 rounded-lg p-3">
+                        <span class="font-bold text-purple-800">NÍVEL: </span>
+                        <span id="nivel-atual" class="font-bold text-purple-800">FÁCIL</span>
+                    </div>
+
+                    <div class="bg-pink-100 rounded-lg p-3">
+                        <span class="font-bold text-purple-800">TEMPO: </span>
+                        <span id="tempo" class="font-bold text-purple-800">00:00</span>
+                    </div>
+
+                    <div class="bg-pink-100 rounded-lg p-3">
+                        <span class="font-bold text-purple-800">PARES: </span>
+                        <span id="pares-encontrados" class="font-bold text-indigo-800">0</span>/<span id="total-pares"
+                            class="font-bold text-purple-800">6</span>
+                    </div>
+                </div>
+
+                <div id="tabuleiro" class="grid grid-cols-3 md:grid-cols-4 gap-4 mb-6">
+                    <!-- As cartas serão inseridas aqui pelo JavaScript -->
+                </div>
+
+                <div class="flex justify-center">
+                    <button id="btn-voltar"
+                        class="bg-purple-800 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300">
+                        VOLTAR AO INÍCIO
+                    </button>
+                </div>
+            </div>
+            <!-- Tela de instruções -->
+            <div id="tela-instrucoes" class="hidden fade-in">
+                <div class="text-center mb-6">
+                    <h2 class="text-3xl font-bold text-aprender ">QUER SABER COMO JOGAR?</h2>
+                    <p class="text-lg font-semibold text-vemcomigo">VEM COMIGO QUE EU VOU TE ENSINAR!</p>
+                </div>
+                <!-- Passo 1 -->
+                <div class="flex items-start rounded-lg p-4 passo1">
+                    <div class="numero-passo cor1">
+                        <span class="text-4xl numero1">1</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold titulo-passo text-cor1 mb-2">ESCOLHA UM NÍVEL</h3>
+                        <p class="text-gray-700 uppercase">Primeiro, escolha se quer jogar no nível fácil, médio ou
+                            difícil.
+                            Quanto mais difícil, mais cartas para encontrar!</p>
+                    </div>
+                </div>
+
+                <!-- Passo 2 -->
+                <div class="flex items-start rounded-lg p-4 passo2">
+                    <div class="numero-passo cor2">
+                        <span class="text-4xl numero2">2</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold titulo-passo text-cor2 mb-2">VIRE AS CARTAS</h3>
+                        <p class="text-gray-700 uppercase">Clique em uma carta para virá-la e ver qual emoção está
+                            escondida. Depois, clique em outra carta para tentar encontrar o par igual.</p>
+                    </div>
+                </div>
+
+                <!-- Passo 3 -->
+                <div class="flex items-start rounded-lg p-4 passo3">
+                    <div class="numero-passo cor3">
+                        <span class="text-4xl numero3">3</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold titulo-passo text-cor3 mb-2">ENCONTRE OS PARES</h3>
+                        <p class="text-gray-700 uppercase">Se as duas cartas que você virou tiverem a mesma emoção, você
+                            encontrou um par! Elas ficarão viradas para cima. Se forem diferentes, elas virarão de volta
+                            e
+                            você pode tentar novamente.</p>
+                    </div>
+                </div>
+
+                <!-- Passo 4 -->
+                <div class="flex items-start rounded-lg p-4 passo4">
+                    <div class="numero-passo cor4">
+                        <span class="text-4xl numero4">4</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold titulo-passo text-cor4 mb-2">GANHE O JOGO</h3>
+                        <p class="text-gray-700 uppercase">Você ganha quando encontrar todos os pares! Tente ser rápido
+                            para
+                            conseguir um tempo melhor.</p>
+                    </div>
+                </div>
+
+
+                <div class="mt-8 bg-pink-100 rounded-lg p-6">
+                    <h3 class="text-xl font-bold text-pink-600 mb-3">CONHEÇA ALGUMAS EMOÇÕES DO DIVERTIDAMENTE:</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+
+                        <!-- Emoção 1 -->
+                        <div class="text-center">
+                            <img src="imagens/ale.png" alt="Alegria" class="w-20 h-20 mx-auto object-contain">
+                            <p class="font-bold text-yellow-600 mt-2">ALEGRIA</p>
+                        </div>
+
+                        <!-- Emoção 2 -->
+                        <div class="text-center">
+                            <img src="imagens/ansie.png" alt="Ansiedade" class="w-20 h-20 mx-auto object-contain">
+                            <p class="font-bold text-blue-600 mt-2">ANSIEDADE</p>
+                        </div>
+
+                        <!-- Emoção 3 -->
+                        <div class="text-center">
+                            <img src="imagens/rai.png" alt="Raiva" class="w-20 h-20 mx-auto object-contain">
+                            <p class="font-bold text-red-600 mt-2">RAIVA</p>
+                        </div>
+
+                        <!-- Emoção 4 -->
+                        <div class="text-center">
+                            <img src="imagens/verg.png" alt="Vergonha" class="w-20 h-20 mx-auto object-contain">
+                            <p class="font-bold text-purple-600 mt-2">VERGONHA</p>
+                        </div>
+
+                        <!-- Emoção 5 -->
+                        <div class="text-center">
+                            <img src="imagens/inve.png" alt="Inveja" class="w-20 h-20 mx-auto object-contain">
+                            <p class="font-bold text-green-600 mt-2">INVEJA</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Modal de vitória -->
+        <div id="modal-vitoria"
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+            <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 bounce-in">
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-yellow-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+
+                    <h2 class="text-3xl font-bold mb-2 custom-parabens-titulo">PARABÉNS!</h2>
+                    <p class="text-xl mb-2 custom-venceu-texto">VOCÊ VENCEU O JOGO!</p>
+
+                    <div class="rounded-lg p-4 mb-6 custom-bloco-tempo">
+                        <p class="text-lg">
+                            <span class="font-bold custom-label-tempo">SEU TEMPO:</span>
+                            <span id="tempo-final" class="font-bold custom-valor-tempo">00:00</span>
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button id="btn-jogar-novamente"
+                            class="btn bg-purple-800 hover:bg-purple-900 text-white font-bold py-3 px-6 rounded-lg shadow-md">
+                            JOGAR NOVAMENTE
+                        </button>
+                        <button id="btn-mudar-nivel"
+                            class="btn bg-pink-400 hover:bg-pink-400 text-white font-bold py-3 px-6 rounded-lg shadow-md">
+                            MUDAR NÍVEL
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer-container">
+            <div class="footer-content max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+                <div class="footer-text text-sm text-white">
+                    &copy; 2025 Bruna Muraro - Todos os direitos reservados
+                </div>
+                <div class="footer-logo">
+                    <img src="Logoads.png" alt="Logo do Curso" class="h-8">
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+</body>
+
+</html>

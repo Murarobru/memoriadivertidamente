@@ -1,0 +1,400 @@
+/* style.css */
+
+/* ... (seus estilos existentes para body, .card, info-box, etc.) ... */
+
+/* Garante que o valor do nível esteja em maiúsculas */
+#nivel-atual {
+    text-transform: uppercase !important;
+    /* Adiciona esta linha */
+}
+
+/* ... (restante do seu CSS) ... */
+body {
+    background-image: url('fundo3');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: "Baloo 2", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+
+}
+
+
+.card {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    width: 100%; /* Mantém para que a carta preencha a célula do grid */
+    height: 100%; /* Mantém para que a carta preencha a célula do grid */
+    /* REMOVA max-width e max-height DAQUI: */
+    /* max-width: 100px; */
+    /* max-height: 100px; */
+}
+
+/* NOVAS CLASSES PARA DEFINIR O TAMANHO MÁXIMO DAS CARTAS POR NÍVEL */
+.card-size-facil {
+    max-width: 150px; /* Tamanho desejado para o nível Fácil */
+    max-height: 150px;
+}
+
+.card-size-medio {
+    max-width: 120px; /* Tamanho desejado para o nível Médio */
+    max-height: 120px;
+}
+
+.card-size-dificil {
+    max-width: 90px;  /* Tamanho desejado para o nível Difícil (ajuste se necessário) */
+    max-height: 90px;
+}
+
+/* ... o restante do seu CSS (como .card-inner, .card-front, .card-back etc.) ... */
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-front {
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    transform: rotateY(0deg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-back img {
+    width: 100%;
+    /* Garante que a imagem ocupe toda a largura disponível do contêiner da carta. */
+    height: 100%;
+    /* Garante que a imagem ocupe toda a altura disponível do contêiner da carta. */
+    object-fit: contain;
+    /* Redimensiona a imagem para caber completamente dentro do seu contêiner, mantendo sua proporção e sem ser cortada. */
+    border-radius: 12px;
+    /* Mantém o raio da borda para que as imagens correspondam ao arredondamento da carta. */
+}
+
+.emotion {
+    width: 80%;
+    height: 80%;
+}
+
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.tab {
+    transition: all 0.3s ease;
+}
+
+.tab:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #f00;
+    animation: confetti-fall 3s ease-in-out infinite;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(600px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.bounce-in {
+    animation: bounce-in 0.5s;
+}
+
+@keyframes bounce-in {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.fade-in {
+    animation: fade-in 0.5s;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.jogotitulo {
+    color: #DD6F94;
+}
+
+.letra-d {
+    color: #DD6F94;
+}
+
+.letra-i {
+    color: #5DCECA;
+}
+
+.letra-v {
+    color: #D1611F;
+}
+
+.letra-e {
+    color: #ebe728;
+}
+
+.letra-r {
+    color: #73B275;
+}
+
+.letra-t {
+    color: #e92e20;
+}
+
+.letra-i2 {
+    color: #917E9E;
+}
+
+
+.letra-d2 {
+    color: #DD6F94;
+}
+
+
+.letra-a {
+    color: #5DCECA;
+}
+
+
+.letra-m {
+    color: #D1611F;
+}
+
+.letra-e2 {
+    color: #ebe728;
+}
+
+.letra-n {
+    color: #73B275;
+}
+
+.letra-t2 {
+    color: #e92e20;
+}
+
+.letra-e3 {
+    color: #917E9E;
+}
+
+.text-aprender {
+    color: #1799d1;
+}
+
+.text-vemcomigo {
+    color: #DD6F94;
+    /* substitua por sua cor específica */
+}
+
+.text-amiguinho {
+    color: #1799d1;
+    /* substitua por sua cor específica */
+}
+
+.text-comojogar {
+    /* COMO JOGAR BARRA DE NAVEGAÇÃO */
+    color: #1799d1;
+    /* substitua por sua cor específica */
+}
+
+/* NÚMERO DO PASSO - bolinhas coloridas */
+.numero-passo {
+    border-radius: 9999px;
+    /* deixa bem redondo */
+    padding: 0.75rem;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+}
+
+.passo1 {
+    background-color: #917e9e4f;
+}
+
+.passo2 {
+    background-color: #dd6f9434;
+}
+
+.passo3 {
+    background-color: #5dceca2a;
+}
+
+.passo4 {
+    background-color: #73b27538;
+}
+
+/* TÍTULO do passo */
+.titulo-passo {
+    font-family: 'Baloo 2', cursive;
+}
+
+.text-cor1 {
+    color: #917E9E;
+}
+
+.numero1 {
+    color: #917E9E;
+}
+
+.text-cor2 {
+    color: #DD6F94;
+}
+
+.numero2 {
+    color: #DD6F94;
+}
+
+.text-cor3 {
+    color: #5DCECA;
+}
+
+.numero3 {
+    color: #5DCECA;
+}
+
+.text-cor4 {
+    color: #73B275;
+}
+
+.numero4 {
+    color: #73B275;
+}
+
+/* Níveis de dificuldade */
+#nivel-facil {
+    background-color: #939CBC;
+}
+
+#nivel-facil:hover {
+    background-color: #f19155;
+}
+
+#nivel-medio {
+    /* COR OK*/
+    background-color: #DD6F94;
+}
+
+#nivel-medio:hover {
+    /* COR OK*/
+    background-color: #0F1F5A;
+}
+
+#nivel-dificil {
+    background-color: #5DCECA;
+}
+
+#nivel-dificil:hover {
+    background-color: #ff6b61;
+}
+
+/* Botões da barra de navegação */
+#btn-inicio {
+    background-color: #73B275;
+}
+
+#btn-inicio:hover {
+    background-color: #DD6F94
+}
+
+#btn-jogo {
+    background-color: #e6e334;
+}
+
+#btn-jogo:hover {
+    background-color: #939CBC;
+}
+
+#btn-instrucoes {
+    /*COR OK*/
+    background-color: #917E9E;
+}
+
+#btn-instrucoes:hover {
+    /* COR OK*/
+    background-color: #73B275;
+}
+
+/* style.css (adicione no final do arquivo) */
+
+.custom-parabens-titulo {
+    color: #5DCECA;
+}
+
+.custom-venceu-texto {
+    color: #0F1F5A;
+}
+
+.custom-bloco-tempo {
+    background-color: #a955f72c
+}
+
+.custom-label-tempo {
+    color: #1799d1;
+}
+
+.custom-valor-tempo {
+    color: #1799d1;
+}
